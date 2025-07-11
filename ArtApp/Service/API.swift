@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum API {
+    static let stringURL = "https://cdn.accelonline.io/OUR6G_IgJkCvBg5qurB2Ag/files/YPHn3cnKEk2NutI6fHK04Q.json"
+}

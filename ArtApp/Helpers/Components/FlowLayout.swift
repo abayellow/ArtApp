@@ -22,7 +22,7 @@ extension FlowLayout {
     func setupLayout() {
         let sideInset: CGFloat = 16
         let interItemSpacing: CGFloat = 12
-        let cellHeight: CGFloat = 100
+        let cellHeight: CGFloat = 120
         
         let screenWidth = UIScreen.main.bounds.width
         let cellWidth = screenWidth - (sideInset * 2)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseCell: UICollectionViewCell {
+class BaseCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +21,7 @@ class BaseCell: UICollectionViewCell {
     
 }
 
-@objc extension BaseCell {
+@objc extension BaseCollectionCell {
     func setupViews() {
         
     }

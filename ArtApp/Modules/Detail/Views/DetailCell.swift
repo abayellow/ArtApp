@@ -11,24 +11,35 @@ class DetailCell: BaseTableCell {
     private let image = UIImageView()
     private let label = UILabel()
     
+    func configure(with artist: Artist, indexPath: IndexPath) {
+        let imageName = artist.works[indexPath.row].image
+        let imageTitle = artist.works[indexPath.row].title
+        
+        image.image = UIImage(named: imageName)
+        label.text = imageTitle
+    }
 }
 
 extension DetailCell {
     override func setupViews() {
-        [image, label].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview($0)
-        }
-        backgroundColor = .systemYellow
+        contentView.addView(image)
+        contentView.addView(label)
         
-        image.backgroundColor = .yellow
-        label.text = "label text"
-//        label.backgroundColor = .orange
+        configureImage()
+        configureLabel()
+    }
+    
+    func configureImage() {
+        image.layer.cornerRadius = 12
+        image.clipsToBounds = true
+    }
+    
+    func configureLabel() {
+        label.font = UIFont(name: "AvenirNext-Italic" , size: 18)
     }
     
     override func setConstraints() {
         NSLayoutConstraint.activate([
-        
             image.topAnchor.constraint(equalTo: topAnchor),
             image.leadingAnchor.constraint(equalTo: leadingAnchor),
             image.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -38,7 +49,6 @@ extension DetailCell {
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor),
-        
         ])
     }
 }

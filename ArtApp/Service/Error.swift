@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum NetworkError: Error {
+    case invalidURL
+    case invalidData
+    case dataNotDecoded
+}
