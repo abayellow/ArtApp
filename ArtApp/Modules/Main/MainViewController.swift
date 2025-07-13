@@ -13,18 +13,15 @@ final class MainViewController: BaseViewController {
     private let networkManager = NetworkService()
     private var artists: [Artist] = []
     private var searchResult: [Artist] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadArtists()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setDefaultNavigationBar()
     }
 
-    
     private func loadArtists() {
         networkManager.request(urlString: API.stringURL) { result in
             switch result {
@@ -46,17 +43,14 @@ extension MainViewController {
 
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
-        
         let flowLayout = FlowLayout()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         collectionView.reqister(MainCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(collectionView)
     }
-    
     override func setupConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -65,12 +59,10 @@ extension MainViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
 }
 
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             searchResult = artists
                 .filter { $0.name.localizedCaseInsensitiveContains(searchText) }
@@ -79,7 +71,6 @@ extension MainViewController: UISearchResultsUpdating {
             searchResult = artists
             collectionView.reloadData()
         }
-        
     }
 }
 
@@ -87,16 +78,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         searchResult.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(of: MainCell.self, indexPath: indexPath)
         cell.configure(artist: searchResult[indexPath.row])
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        vc.detailView.configure(with: searchResult[indexPath.row])
-        navigationController?.pushViewController(vc, animated: true)
+        let detailViewController = DetailViewController()
+        detailViewController.detailView.configure(with: searchResult[indexPath.row])
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

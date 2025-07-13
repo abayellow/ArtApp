@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23C844BA716C60F677D6AE68 /* Pods_ArtApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5B474F8BC099BEA14CF956 /* Pods_ArtApp.framework */; };
 		6DEEE2E72E1F412C00338DA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEE2E62E1F412C00338DA5 /* AppDelegate.swift */; };
 		6DEEE2E92E1F412C00338DA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEE2E82E1F412C00338DA5 /* SceneDelegate.swift */; };
 		6DEEE2EB2E1F412C00338DA5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEEE2EA2E1F412C00338DA5 /* MainViewController.swift */; };
@@ -70,6 +71,9 @@
 		6DEEE3312E20A9D800338DA5 /* ImageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfoView.swift; sourceTree = "<group>"; };
 		6DEEE3342E20B73C00338DA5 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		6DEEE3372E20B93E00338DA5 /* ExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandViewController.swift; sourceTree = "<group>"; };
+		7E732A1DDF1BE7A5552C0B13 /* Pods-ArtApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtApp.release.xcconfig"; path = "Target Support Files/Pods-ArtApp/Pods-ArtApp.release.xcconfig"; sourceTree = "<group>"; };
+		BD5B474F8BC099BEA14CF956 /* Pods_ArtApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAF8208A65DCC842F7191296 /* Pods-ArtApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtApp.debug.xcconfig"; path = "Target Support Files/Pods-ArtApp/Pods-ArtApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,17 +81,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23C844BA716C60F677D6AE68 /* Pods_ArtApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20D9AC4F8BC02C9B89604A6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD5B474F8BC099BEA14CF956 /* Pods_ArtApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6DEEE2DA2E1F412C00338DA5 = {
 			isa = PBXGroup;
 			children = (
 				6DEEE2E52E1F412C00338DA5 /* ArtApp */,
 				6DEEE2E42E1F412C00338DA5 /* Products */,
+				748A5E4EB87DE65A40C65614 /* Pods */,
+				20D9AC4F8BC02C9B89604A6C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,6 +271,15 @@
 			path = Expand;
 			sourceTree = "<group>";
 		};
+		748A5E4EB87DE65A40C65614 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAF8208A65DCC842F7191296 /* Pods-ArtApp.debug.xcconfig */,
+				7E732A1DDF1BE7A5552C0B13 /* Pods-ArtApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -263,9 +287,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DEEE2F72E1F412F00338DA5 /* Build configuration list for PBXNativeTarget "ArtApp" */;
 			buildPhases = (
+				AD53EAF819E30425D1A45B5D /* [CP] Check Pods Manifest.lock */,
 				6DEEE2DF2E1F412C00338DA5 /* Sources */,
 				6DEEE2E02E1F412C00338DA5 /* Frameworks */,
 				6DEEE2E12E1F412C00338DA5 /* Resources */,
+				6DEEE3392E20D6D000338DA5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -320,6 +346,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6DEEE3392E20D6D000338DA5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -f \"${PODS_ROOT}/SwiftLint/swiftlint\" ]; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not found\"\nfi\n";
+		};
+		AD53EAF819E30425D1A45B5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArtApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6DEEE2DF2E1F412C00338DA5 /* Sources */ = {
@@ -486,6 +554,7 @@
 		};
 		6DEEE2F82E1F412F00338DA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF8208A65DCC842F7191296 /* Pods-ArtApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -512,6 +581,7 @@
 		};
 		6DEEE2F92E1F412F00338DA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E732A1DDF1BE7A5552C0B13 /* Pods-ArtApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
