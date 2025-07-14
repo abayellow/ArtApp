@@ -9,31 +9,45 @@ import UIKit
 import SnapKit
 
 class BioCell: BaseCollectionCell {
-    let title = UILabel()
-    let biography = UILabel()
+    let titleLabel = UILabel()
+    let biographyLabel = UILabel()
     
     func configure(with artist: Artist) {
-        title.text = "Biography"
-        biography.text = artist.bio
+        titleLabel.text = "Biography"
+        biographyLabel.text = artist.bio
     }
 }
 
 extension BioCell {
     override func setupViews() {
-        addSubview(title)
-        addSubview(biography)
+        addSubview(titleLabel)
+        addSubview(biographyLabel)
+        titleLabelSetup()
+        bioLabelSetup()
     }
     
     override func setConstraints() {
-        title.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(15)
             make.top.equalToSuperview().inset(15)
         }
         
-        biography.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(15)
-            make.top.equalTo(title.snp.bottom).inset(5)
+        biographyLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
         }
+    }
+    
+    func titleLabelSetup() {
+        titleLabel.font = UIFont(name: "TimesNewRomanPS-BoldItalicMT", size: 18)
+        
+    }
+    func bioLabelSetup() {
+        biographyLabel.font = UIFont(name: "TimesNewRomanPS-ItalicMT", size: 16)
+        biographyLabel.numberOfLines = 0
+        biographyLabel.adjustsFontSizeToFitWidth = true
+        biographyLabel.lineBreakMode = .byTruncatingTail
+        
     }
 }
 

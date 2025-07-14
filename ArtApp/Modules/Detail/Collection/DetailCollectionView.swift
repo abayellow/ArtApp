@@ -7,20 +7,15 @@
 
 import UIKit
 
-class DetailCollectionView: BaseCollectionView {
+protocol DetailCollectionDelegate: AnyObject {
+    func didSelected(work: Work)
+    func didScroll(_ scrollView: UIScrollView)
+}
 
+class DetailCollectionView: BaseCollectionView {
     var artist: Artist!
-    
-    
-    override func setupViews() {
-        let flow = UICollectionViewFlowLayout()
-        
-        reqister(PhotoCell.self)
-        reqister(BioCell.self)
-        reqister(WorkCell.self)
-        dataSource = self
-        delegate = self
-    }
+    var detailDelegate: DetailCollectionDelegate!
+
 }
 
 extension DetailCollectionView: UICollectionViewDataSource {
@@ -60,13 +55,38 @@ extension DetailCollectionView: UICollectionViewDataSource {
 
 extension DetailCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let work = artist.works[indexPath.row]
+        detailDelegate.didSelected(work: work)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width
+        
+        switch indexPath.section {
+        case 0:
+            
+            return CGSize(width: width, height: width)
+        case 1:
+            
+            return CGSize(width: width, height: 150)
+        default:
+            return CGSize(width: width - 25, height: 200)
+        }
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//    }
-    
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        detailDelegate.didScroll(scrollView)
+    }
+}
 
+extension DetailCollectionView {
+    override func setupViews() {
+        contentInsetAdjustmentBehavior = .never // к верхнему краю
+        reqister(PhotoCell.self)
+        reqister(BioCell.self)
+        reqister(WorkCell.self)
+        dataSource = self
+        delegate = self
+    }
 }

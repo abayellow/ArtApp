@@ -9,14 +9,20 @@ import UIKit
 
 class BaseCollectionView: UICollectionView {
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    init() {
+         let flowLayout = UICollectionViewFlowLayout()
+//         flowLayout.scrollDirection = .vertical
+//         flowLayout.minimumLineSpacing = 10
+//         flowLayout.minimumInteritemSpacing = 10
+//         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+         
+         super.init(frame: .zero, collectionViewLayout: flowLayout)
+         setupViews()
+     }
+     
+     required init?(coder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
     
 }
 

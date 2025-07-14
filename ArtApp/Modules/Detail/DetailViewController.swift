@@ -6,46 +6,28 @@
 //
 
 import UIKit
+import SnapKit
 
-class DetailViewController: BaseViewController, DetailTableDelegate {
+class DetailViewController: BaseViewController {
     var detailView = ContentView()
-    private let scrollView = UIScrollView()
-    
-    func didSelectWork(_ work: Work) {
-        let imageVC = ImageViewController()
-        imageVC.configure(with: work)
-        navigationController?.pushViewController(imageVC, animated: true)
-    }
-    
+ 
  
 }
 
 extension DetailViewController {
     override func setupViews() {
-        detailView.tableView.tableDelegate = self
+        modalPresentationCapturesStatusBarAppearance = true
         navigationController?.setTransparentNavigationBar()
         setupBackButton()
-        configureScrollView()
-        
-        view.addView(scrollView)
-        scrollView.addView(detailView)
+        detailView.collection.detailDelegate = self
+//        detailView.collection.delegate = self
+        view.addSubview(detailView)
     }
 
     override func setupConstraints() {
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            detailView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            detailView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            detailView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            detailView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            detailView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2.1),
-            detailView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-            
-        ])
+        detailView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     func setupBackButton() {
         let backButton = UIButton(type: .system)
@@ -59,22 +41,26 @@ extension DetailViewController {
            navigationController?.popViewController(animated: true)
        }
     
-    func configureScrollView() {
-        scrollView.delegate = self
-        scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.bounces = false
-    }
+    
 }
 
-extension DetailViewController: UIScrollViewDelegate  {
-    /// hide back button when scroll scrollView
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+extension DetailViewController: DetailCollectionDelegate {
+    func didScroll(_ scrollView: UIScrollView) {
         guard let backButton = navigationItem.leftBarButtonItem?.customView else { return }
         backButton.isHidden = scrollView.contentOffset.y > 50
         
         let offsetY = scrollView.contentOffset.y
         isStatusBarHidden = offsetY > 50
     }
+    
+    func didSelected(work: Work) {
+        let imageViewContrller = ImageViewController()
+        imageViewContrller.configure(with: work)
+        navigationController?.pushViewController(imageViewContrller, animated: true)
+    }
 }
+
+
 
 

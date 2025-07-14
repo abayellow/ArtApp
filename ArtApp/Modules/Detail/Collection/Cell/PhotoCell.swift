@@ -20,7 +20,6 @@ class PhotoCell: BaseCollectionCell {
     }
     
 }
-
 extension PhotoCell {
     override func setupViews() {
         addSubview(artistImageView)
@@ -28,12 +27,9 @@ extension PhotoCell {
         addSubview(authorLabel)
         
     }
-    
     override func setConstraints() {
-
         artistImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
     }
 }
