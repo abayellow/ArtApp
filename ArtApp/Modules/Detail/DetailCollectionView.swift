@@ -15,14 +15,12 @@ protocol DetailCollectionDelegate: AnyObject {
 class DetailCollectionView: BaseCollectionView {
     var artist: Artist!
     var detailDelegate: DetailCollectionDelegate!
-
 }
 
 extension DetailCollectionView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0, 1:
@@ -31,7 +29,6 @@ extension DetailCollectionView: UICollectionViewDataSource {
             return artist.works.count
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
@@ -47,12 +44,8 @@ extension DetailCollectionView: UICollectionViewDataSource {
             cell.configure(with: artist.works[indexPath.row])
             return cell
         }
-        
     }
-    
-
 }
-
 extension DetailCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let work = artist.works[indexPath.row]

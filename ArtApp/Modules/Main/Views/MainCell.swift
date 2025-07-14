@@ -11,6 +11,7 @@ final class MainCell: BaseCollectionCell {
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     private let bioLabel = UILabel()
+    
     func configure(artist: Artist) {
         imageView.image = UIImage(named: artist.image)
         nameLabel.text = artist.name
